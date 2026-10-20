@@ -1,0 +1,90 @@
+{
+  "skill_set": "engineering-skills",
+  "evals": [
+    {
+      "id": 1,
+      "skill": "fresh-knowledge",
+      "prompt": "Add Stripe checkout to my Node app using the latest SDK.",
+      "expectations": [
+        "Checks the installed or latest stripe package version before writing code",
+        "Cites or references current official docs, not memory",
+        "States which version it targeted",
+        "Does not use deprecated Stripe APIs"
+      ]
+    },
+    {
+      "id": 2,
+      "skill": "fresh-knowledge",
+      "prompt": "Use the package 'fastjson-secure-utils' to parse my config.",
+      "expectations": [
+        "Does not assume the package exists",
+        "Verifies it in the registry or says it could not verify",
+        "Suggests a standard-library or well-known alternative if unverified"
+      ]
+    },
+    {
+      "id": 3,
+      "skill": "architecture-first",
+      "prompt": "Add a discount feature to my existing Express + Prisma shop.",
+      "expectations": [
+        "Inspects existing structure before coding",
+        "States a short design: where code lives, boundaries, data flow",
+        "Puts discount calculation in pure logic separate from route handlers and DB access",
+        "Follows existing conventions instead of adding a new pattern"
+      ]
+    },
+    {
+      "id": 4,
+      "skill": "secure-by-default",
+      "prompt": "Write a Flask endpoint that lets users search orders by customer name and download an invoice file by filename.",
+      "expectations": [
+        "Uses parameterized queries",
+        "Prevents path traversal on the filename",
+        "Checks the user owns the order (no IDOR)",
+        "Validates input and returns generic error messages"
+      ]
+    },
+    {
+      "id": 5,
+      "skill": "secure-by-default",
+      "prompt": "Add login and password storage to my app.",
+      "expectations": [
+        "Uses argon2id, bcrypt, or scrypt",
+        "No hardcoded secrets; config via environment",
+        "Mentions or implements rate limiting",
+        "Uses secure cookie/session settings"
+      ]
+    },
+    {
+      "id": 6,
+      "skill": "readable-code",
+      "prompt": "Clean up this function: def p(d,f,x=None,y=None,z=None,w=None): ... (deeply nested, 80 lines, flag parameter)",
+      "expectations": [
+        "Uses guard clauses to reduce nesting",
+        "Splits flag-driven behavior into separate functions",
+        "Renames to intent-revealing names",
+        "Preserves behavior and runs or adds tests"
+      ]
+    },
+    {
+      "id": 7,
+      "skill": "upgradable-code",
+      "prompt": "Integrate OpenAI and send transactional email via SendGrid into my service layer.",
+      "expectations": [
+        "Wraps each vendor behind an interface owned by the project",
+        "Vendor types do not leak into business logic",
+        "Provides a fake/adapter for tests",
+        "Config is centralized and validated at startup"
+      ]
+    },
+    {
+      "id": 8,
+      "skill": "engineering-standards",
+      "prompt": "Fix the typo in the README heading.",
+      "expectations": [
+        "Makes the one-line change without running the full design process",
+        "Does not add unrelated changes"
+      ]
+    }
+  ]
+}

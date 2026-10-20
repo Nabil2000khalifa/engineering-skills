@@ -1,0 +1,29 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile scripts
+        run: python -m compileall skills
+      - name: Validate SKILL.md frontmatter
+        run: |
+          python - <<'PY'
+          import pathlib, re, sys, json
+          bad = 0
+          for f in pathlib.Path("skills").glob("*/SKILL.md"):
+              t = f.read_text()
+              m = re.match(r"---\nname: (.+)\ndescription: (.+)\n---\n", t)
+              if not m or m.group(1) != f.parent.name:
+                  print("Bad frontmatter:", f); bad += 1
+              if len(t.splitlines()) > 500:
+                  print("Too long:", f); bad += 1
+          json.load(open("evals/evals.json"))
+          sys.exit(bad)
+          PY
+      - name: Run scanners on own repo
+        run: python skills/readable-code/scripts/complexity_check.py skills --max-lines 60 || true
